@@ -10,7 +10,12 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 // console.log(process.env.ACCESS_TOKEN_SECRET);
 
 // middlewares
-app.use(cors());
+const cors = require('cors');
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://final-year-project-alpha-seven.vercel.app/'], // Add Vercel domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],   // Allowed methods
+}));
+
 app.use(express.json());
 
 // mongodb configurations
