@@ -11,9 +11,10 @@ const port = process.env.PORT || 6001;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://final-year-project-alpha-seven.vercel.app/'], // Add Vercel domain
+  origin: ['http://localhost:5173', 'https://final-year-project-alpha-seven.vercel.app'], // without the trailing /
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
+
 app.use(express.json());
 
 // MongoDB configuration
