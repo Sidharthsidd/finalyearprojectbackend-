@@ -79,7 +79,8 @@ async function runChat(userInput) {
     },
     {
       role: "model",
-      parts: [{ text:  "Please provide me with line by line with small answer the following information so I can create personalized recommendations:\n\n Age:  \n*  *Height:**\n* **Weight:**\n* **Specific dietary needs:** (e.g., limiting sugar, gluten-free, vegetarian, vegan, lactose intolerant, etc.)\n* **Any allergies or sensitivities:** \n* **What type of restaurant are you eating at?** (e.g., Italian, Mexican, American, etc.) \n* **What are your preferences for meals?** (e.g., Do you prefer lighter fare, heavier meals, or something in between? Do you like salads, pasta, grilled meats, etc.?)\n\nOnce I have this information, I can create a detailed list of healthy food recommendations tailored specifically to your needs. \n"}],
+      parts: [{ text:  "Please provide me with line-by-line answers to the following information so I can create personalized recommendations:\n\n- Age:  \n- Height:  \n- Weight:  \n- Specific dietary needs: (e.g., limiting sugar, gluten-free, vegetarian, vegan, lactose intolerant, etc.)  \n- Any allergies or sensitivities:  \n- What type of restaurant are you eating at? (e.g., Italian, Mexican, American, etc.)  \n- What are your preferences for meals? (e.g., Do you prefer lighter fare, heavier meals, or something in between? Do you like salads, pasta, grilled meats, etc.?)  \n\nOnce I have this information, I can create a detailed list of healthy food recommendations tailored specifically to your needs."
+}],
     },
   ], });
 
