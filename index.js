@@ -71,7 +71,7 @@ async function runChat(userInput) {
     },
     {
       role: "model",
-      parts: [{ text: "Hello! Welcome to food recommendation. My name is . What's your name?"}],
+      parts: [{ text: "Hello! Welcome to food recommendation. What's your name?"}],
     },
     {
       role: "user",
