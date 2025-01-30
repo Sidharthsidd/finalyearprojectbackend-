@@ -17,12 +17,16 @@ const getCartByEmail = async (req, res) => {
 const addToCart = async (req, res) => {
   const { menuItemId, name, recipe, image, price, quantity, email } = req.body;
   try {
-    const existingCartItem = await Carts.findOne({email });
+    // Check if the item is already in the cart for this user
+    const existingCartItem = await Carts.findOne({ menuItemId, email });
+
     if (existingCartItem) {
       return res
         .status(400)
-        .json({ message: "Product already exists in the cart" });
+        .json({ message: "This product is already in your cart." });
     }
+
+    // If not, add the item to the user's cart
     const cartItem = await Carts.create({
       menuItemId,
       name,
@@ -32,11 +36,13 @@ const addToCart = async (req, res) => {
       quantity,
       email,
     });
+
     res.status(201).json(cartItem);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 // deleting acart item
 const deleteCart = async (req, res) => {

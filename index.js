@@ -36,11 +36,15 @@ const menuRoutes = require("./api/routes/menuRoutes");
 const cartRoutes = require("./api/routes/cartRoutes");
 const userRoutes = require("./api/routes/userRoutes");
 const paymentRoutes = require("./api/routes/paymentRoute");
+const suggestedItemsRouter = require('./api/routes/suggesteditems');
 
 app.use("/menu", menuRoutes);
 app.use("/carts", cartRoutes);
 app.use("/users", userRoutes);
 app.use("/payments", paymentRoutes);
+app.use('/', suggestedItemsRouter);
+
+
 
 // Chatbot Route (added)
 const MODEL_NAME = "gemini-pro";
