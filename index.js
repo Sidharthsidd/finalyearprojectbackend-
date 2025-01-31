@@ -42,8 +42,7 @@ app.use("/menu", menuRoutes);
 app.use("/carts", cartRoutes);
 app.use("/users", userRoutes);
 app.use("/payments", paymentRoutes);
-app.use('/', suggestedItemsRouter);
-
+// app.use('/', suggestedItemsRouter);
 
 
 // Chatbot Route (added)
@@ -91,15 +90,26 @@ async function runChat(userInput) {
   const result = await chat.sendMessage(userInput);
   return result.response.text();
 }
+const fs = require("fs/promises");
 
 app.post('/chat', async (req, res) => {
   try {
     const userInput = req.body?.userInput;
+
     if (!userInput) {
       return res.status(400).json({ error: 'Invalid request body' });
     }
 
-    const response = await runChat(userInput);
+    // Read menu data
+    const filePath = path.join(__dirname, "./data/menu.json");
+    const menuData = JSON.parse(await fs.readFile(filePath, "utf-8"));
+
+    // Append the menu data to the userInput
+    const enrichedInput = `${userInput}\n\nHere is the current menu data:\n${JSON.stringify(menuData)}`;
+
+    // Get AI response
+    const response = await runChat(enrichedInput);
+
     res.json({ response });
   } catch (error) {
     console.error('Error in chat endpoint:', error);

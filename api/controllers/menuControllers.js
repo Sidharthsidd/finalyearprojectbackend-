@@ -1,4 +1,7 @@
 const Menu = require("../model/Menu");
+const fs = require("fs/promises");
+const path = require("path");
+
 
 const getAllMenuItems = async (req, res) => {
   try {
@@ -19,7 +22,6 @@ const postMenuItem = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
 // delete a menu item
 const deleteMenuItem = async (req, res) => {
   const menuId = req.params.id;
