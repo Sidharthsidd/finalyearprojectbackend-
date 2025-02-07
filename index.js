@@ -42,7 +42,7 @@ app.use("/menu", menuRoutes);
 app.use("/carts", cartRoutes);
 app.use("/users", userRoutes);
 app.use("/payments", paymentRoutes);
-// app.use('/', suggestedItemsRouter);
+app.use('/', suggestedItemsRouter);
 
 
 // Chatbot Route (added)
