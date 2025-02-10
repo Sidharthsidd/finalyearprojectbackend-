@@ -94,28 +94,21 @@ const fs = require("fs/promises");
 
 app.post('/chat', async (req, res) => {
   try {
-    const userInput = req.body?.userInput;
-
+    const { userInput } = req.body;
+    
     if (!userInput) {
-      return res.status(400).json({ error: 'Invalid request body' });
+      return res.status(400).json({ error: "User input is required" });
     }
 
-    // Read menu data
-    const filePath = path.join(__dirname, "./data/menu.json");
-    const menuData = JSON.parse(await fs.readFile(filePath, "utf-8"));
-
-    // Append the menu data to the userInput
-    const enrichedInput = `${userInput}\n\nHere is the current menu data:\n${JSON.stringify(menuData)}`;
-
-    // Get AI response
-    const response = await runChat(enrichedInput);
-
+    const response = await runChat(userInput);
     res.json({ response });
+
   } catch (error) {
-    console.error('Error in chat endpoint:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error processing chat request:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
+
 
 // Stripe Payment Route
 app.post("/create-payment-intent", async (req, res) => {
